@@ -21,7 +21,7 @@ export function SiteFooter() {
         <div className="grid gap-12 lg:grid-cols-[1.2fr_1fr_1fr]">
           <div>
             <img
-              src={logo.url}
+             src="/favicon.png"
               alt="MARLED logo"
               width={1512}
               height={1008}
