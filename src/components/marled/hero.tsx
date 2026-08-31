@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import heroImage from "@/assets/marled-logo.png.asset.json";
+import heroImage from "@/assets/hero-facet.jpg";
 import { ActionLink, Eyebrow, Marquee, Reveal } from "./primitives";
 
 const strip = [
