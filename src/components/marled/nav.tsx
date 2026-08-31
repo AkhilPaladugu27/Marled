@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import logo from "@/assets/marled-logo.png.asset.json";
 import { cn } from "@/lib/utils";
 import { Arrow } from "./primitives";
 
@@ -38,7 +37,7 @@ export function SiteNav() {
       >
         <a href="#top" className="group flex items-center gap-3" aria-label="MARLED home">
           <img
-            src={logo.url}
+            src="/favicon.png"
             alt="MARLED logo"
             width={1512}
             height={1008}
