@@ -1,0 +1,299 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * MARLED design system.
+ * Strict monochrome palette: #000000, #1E1E1F, #8E8E8F, #D8D8D9, #FFFFFF.
+ * All colors are oklch tokens. No accent hues anywhere.
+ */
+
+@theme inline {
+  --font-sans: "Barlow", "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Bebas Neue", "Barlow Condensed", Impact, sans-serif;
+  --font-condensed: "Barlow Condensed", "Barlow", sans-serif;
+
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Brand surfaces */
+  --color-ink: var(--ink);
+  --color-graphite: var(--graphite);
+  --color-silver: var(--silver);
+  --color-mist: var(--mist);
+  --color-paper: var(--paper);
+}
+
+:root {
+  --radius: 0.25rem;
+
+  --ink: oklch(0 0 0); /* #000000 */
+  --graphite: oklch(0.221 0.002 285); /* #1E1E1F */
+  --silver: oklch(0.639 0.002 285); /* #8E8E8F */
+  --mist: oklch(0.879 0.002 285); /* #D8D8D9 */
+  --paper: oklch(1 0 0); /* #FFFFFF */
+
+  --background: oklch(0.973 0 0);
+  --foreground: var(--graphite);
+  --card: oklch(1 0 0);
+  --card-foreground: var(--graphite);
+  --primary: var(--graphite);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: var(--mist);
+  --secondary-foreground: var(--graphite);
+  --muted: oklch(0.949 0 0);
+  --muted-foreground: var(--silver);
+  --accent: var(--mist);
+  --accent-foreground: var(--graphite);
+  --border: oklch(0.221 0.002 285 / 12%);
+  --input: oklch(0.221 0.002 285 / 16%);
+  --ring: var(--silver);
+
+  --gradient-graphite: linear-gradient(
+    160deg,
+    oklch(0 0 0) 0%,
+    oklch(0.221 0.002 285) 55%,
+    oklch(0.32 0.002 285) 100%
+  );
+  --gradient-reflect: linear-gradient(
+    120deg,
+    oklch(0.879 0.002 285) 0%,
+    oklch(1 0 0) 45%,
+    oklch(0.879 0.002 285) 100%
+  );
+  --shadow-soft: 0 18px 50px -30px oklch(0 0 0 / 35%);
+  --ease-marled: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-synthesis-weight: none;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: var(--graphite);
+    color: var(--paper);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--silver);
+    outline-offset: 3px;
+  }
+}
+
+@utility container-marled {
+  width: 100%;
+  max-width: 84rem;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+@utility display-xl {
+  font-family: var(--font-display);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: -0.005em;
+  line-height: 0.82;
+  font-size: clamp(3.4rem, 11vw, 9.5rem);
+}
+
+@utility display-lg {
+  font-family: var(--font-display);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  line-height: 0.86;
+  font-size: clamp(2.6rem, 7vw, 5.6rem);
+}
+
+@utility display-md {
+  font-family: var(--font-display);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  line-height: 0.92;
+  font-size: clamp(1.8rem, 3.2vw, 2.9rem);
+}
+
+@utility mono-label {
+  font-family: var(--font-condensed);
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+@utility eyebrow-text {
+  font-family: var(--font-condensed);
+  font-weight: 700;
+  font-size: 0.76rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+@utility section-pad {
+  padding-block: clamp(4.5rem, 9vw, 10rem);
+}
+
+/* Outlined poster type */
+@utility text-stroke-dark {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--graphite);
+  paint-order: stroke fill;
+}
+
+@utility text-stroke-light {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--paper);
+  paint-order: stroke fill;
+}
+
+/* Neo-brutalist block */
+@utility brutal {
+  border: 2px solid var(--graphite);
+  box-shadow: 8px 8px 0 0 var(--graphite);
+  transition:
+    transform 0.35s var(--ease-marled),
+    box-shadow 0.35s var(--ease-marled);
+  &:hover {
+    transform: translate3d(-3px, -3px, 0);
+    box-shadow: 14px 14px 0 0 var(--graphite);
+  }
+}
+
+@utility brutal-light {
+  border: 2px solid var(--paper);
+  box-shadow: 8px 8px 0 0 var(--paper);
+  transition:
+    transform 0.35s var(--ease-marled),
+    box-shadow 0.35s var(--ease-marled);
+  &:hover {
+    transform: translate3d(-3px, -3px, 0);
+    box-shadow: 14px 14px 0 0 var(--paper);
+  }
+}
+
+@utility tilt-l {
+  transform: rotate(-2.2deg);
+}
+
+@utility tilt-r {
+  transform: rotate(2.2deg);
+}
+
+@utility grid-lines {
+  background-image:
+    linear-gradient(to right, oklch(0.221 0.002 285 / 8%) 1px, transparent 1px),
+    linear-gradient(to bottom, oklch(0.221 0.002 285 / 8%) 1px, transparent 1px);
+  background-size: 72px 72px;
+}
+
+@utility grain {
+  position: relative;
+}
+
+@utility grain-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Marquee ticker */
+.marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 26s linear infinite;
+}
+
+.marquee-reverse {
+  animation-direction: reverse;
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.spin-slow {
+  animation: spin-slow 18s linear infinite;
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px) rotate(var(--reveal-tilt, 0deg));
+  transition:
+    opacity 0.8s var(--ease-marled),
+    transform 0.8s var(--ease-marled);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0) rotate(var(--reveal-tilt, 0deg));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .marquee,
+  .spin-slow {
+    animation: none;
+  }
+}
+
