@@ -561,7 +561,7 @@ export function About() {
         <Reveal delay={150} tilt={2} className="relative">
           <div className="flex items-center justify-center overflow-hidden border-2 border-graphite bg-graphite p-8">
             <img
-  src="/favicon.png"
+  src="/marled-logo.png"
   alt="MARLED logo"
   className="h-auto w-full max-w-md object-contain"
 />
